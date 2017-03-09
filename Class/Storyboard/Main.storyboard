@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MEP-3c-Wns">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="XkM-B2-HgS">
+            <objects>
+                <tabBarController id="MEP-3c-Wns" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="t2h-og-3zt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="twM-Xq-0db" kind="relationship" relationship="viewControllers" id="GW1-0A-rOn"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zXc-BK-95G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-987" y="-26"/>
+        </scene>
+        <!--OnlyWeather-->
+        <scene sceneID="HZM-an-j0I">
+            <objects>
+                <navigationController id="twM-Xq-0db" customClass="OWCustomeNavigationController" customModule="OnlyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="OnlyWeather" image="晴_tabbar" selectedImage="晴_tabbar" id="grq-19-IuI">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jRC-wN-ywg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Vv7-zD-a7k" kind="relationship" relationship="rootViewController" id="14p-1L-km1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DoT-WZ-wvj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-254" y="-27"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="e0I-m1-KHO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="Home" id="Vv7-zD-a7k" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tD2-Yx-KbY"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s30-g9-4Tt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="251" y="-27"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="晴_tabbar" width="32" height="32"/>
+    </resources>
+</document>
