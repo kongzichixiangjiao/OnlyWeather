@@ -39,10 +39,26 @@ class OWCalendarCalendarView: UIView {
             }
         })
         v.isUserInteractionEnabled = true
-        self.addSubview(v)
         return v
     }()
-       
+    
+    lazy var tableView: UITableView = {
+        let t = UITableView(frame: CGRect.zero)
+        t.separatorStyle = .none
+        t.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        t.showsVerticalScrollIndicator = true
+        t.showsHorizontalScrollIndicator = true
+        t.backgroundColor = UIColor.white
+        t.delegate = self
+        t.dataSource = self
+        t.tableHeaderView = self.collectionView
+        self.addSubview(t)
+        
+        t.ga.registerNibCell(kOWCanlenderTableViewCell)
+        
+        return t
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -56,6 +72,12 @@ class OWCalendarCalendarView: UIView {
             make.top.equalTo(headerView.snp.bottom)
             make.left.right.equalTo(0)
             make.height.equalTo(20)
+        }
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.collectionView.snp.bottom)
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(0)
         }
         
         collectionView.snp.makeConstraints { (make) in
@@ -87,6 +109,30 @@ class OWCalendarCalendarView: UIView {
     }
 }
 
+extension OWCalendarCalendarView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: kOWCanlenderTableViewCell) as! OWCanlenderTableViewCell
+        cell.textLabel?.text = "--==--"
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let v = UILabel(frame: CGRect(x: 0, y: 0, width: AppWidth, height: 20))
+        if let m = month {
+            v.text = m.year.ga_str + m.month.ga_str
+        }
+        v.backgroundColor = UIColor.orange
+        return v
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+}
 
 extension OWCalendarCalendarView: OWPublicSeletecdDelegate {
     func didSelectedAction(tag: Int) {
