@@ -30,9 +30,6 @@ class OWCalendarCollectionView: UICollectionView {
         
         ga.registerNibCell(kOWCalendarCell)
         
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(OWCalendarCollectionView.pan(sender:)))
-        self.addGestureRecognizer(pan)
-        
         if isTapGesture {
             let tap = UITapGestureRecognizer(target: self, action: #selector(OWCalendarCollectionView.tap(sender:)))
             self.addGestureRecognizer(tap)
@@ -45,29 +42,6 @@ class OWCalendarCollectionView: UICollectionView {
     
     func tap(sender: UITapGestureRecognizer) {
         myDelegate?.touchAction()
-    }
-    
-    func pan(sender: UIPanGestureRecognizer) {
-        let x = sender.translation(in: sender.view).x
-        if x < -50 {
-            if index < 4 {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.contentOffset = CGPoint(x: (self.index + 1).ga_CGFloat * AppWidth, y: 0)
-                    
-                })
-            }
-        } else if x > 50 {
-            if index > 0 {
-                UIView.animate(withDuration: 0.3, animations: {
-                    print(self.index)
-                    self.contentOffset = CGPoint(x: (self.index - 1).ga_CGFloat * AppWidth, y: 0)
-                })
-            }
-        }
-        
-        if sender.state == UIGestureRecognizerState.ended {
-            index = Int(self.contentOffset.x / AppWidth)
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {

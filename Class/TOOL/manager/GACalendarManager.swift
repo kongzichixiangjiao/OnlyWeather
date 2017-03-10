@@ -81,6 +81,23 @@ class CalendarManager {
         handler(days, currentMonth)
     }
     
+    public func currentMonthOffset(tag: Int, group: Int, handler: @escaping (_ days: [DayModel], _ month: MonthModel) -> ()) {
+        currentMonthOffset(tag: tag, handler: {
+            [weak self] days, month in
+            if let _ = self {
+                var objs: [DayModel] = []
+                
+                for day in tag < 0 ? days.reversed() : days {
+                    objs.append(day)
+                    if group * 7 == objs.count {
+                        handler(tag >= 0 ? objs.ga_getLast(count: 7) : objs.ga_getLast(count: 7).reversed(), month)
+                        break
+                    }
+                }
+            }
+        })
+    }
+    
     // 本月临近两月
     private func nearFebruary(tag: Int) -> [MonthModel]{
         var date = Date()

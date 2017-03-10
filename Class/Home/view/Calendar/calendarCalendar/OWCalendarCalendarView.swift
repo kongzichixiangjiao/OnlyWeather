@@ -17,12 +17,12 @@ class OWCalendarCalendarView: UIView {
     var days: [DayModel] = []
     var month: MonthModel?
     
-    var collectionBackViewHeight: Constraint!
-    
-    lazy var weakView: OWWeekView = {
-        let v = OWWeekView.loadView()
-        self.addSubview(v)
-        return v
+    lazy var calendarView: OWHomeCalendarView = {
+        let c = OWHomeCalendarView(frame: CGRect.zero)
+        c.backgroundColor = UIColor.clear
+        self.addSubview(c)
+        c.isHiddenCollectionView(true)
+        return c
     }()
     
     lazy var headerView: UILabel = {
@@ -39,6 +39,7 @@ class OWCalendarCalendarView: UIView {
             }
         })
         v.isUserInteractionEnabled = true
+        v.frame = CGRect.zero
         return v
     }()
     
@@ -51,8 +52,10 @@ class OWCalendarCalendarView: UIView {
         t.backgroundColor = UIColor.white
         t.delegate = self
         t.dataSource = self
+    
         t.tableHeaderView = self.collectionView
-        self.addSubview(t)
+
+        self.insertSubview(t, at: 0)
         
         t.ga.registerNibCell(kOWCanlenderTableViewCell)
         
@@ -67,26 +70,20 @@ class OWCalendarCalendarView: UIView {
             make.left.right.equalTo(0)
             make.height.equalTo(30)
         }
-        
-        weakView.snp.makeConstraints { (make) in
+        calendarView.snp.makeConstraints { (make) in
             make.top.equalTo(headerView.snp.bottom)
             make.left.right.equalTo(0)
-            make.height.equalTo(20)
+            make.height.equalTo(64)
         }
         
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.collectionView.snp.bottom)
+            make.top.equalTo(self.calendarView.snp.bottom).offset(-44)
             make.left.right.equalTo(0)
             make.bottom.equalTo(0)
         }
         
-        collectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.weakView.snp.bottom)
-            make.left.right.equalTo(0)
-            self.collectionBackViewHeight = make.height.equalTo(0).constraint
-        }
-        
         loadDays(tag: 0)
+        
     }
     
     func loadDays(tag: Int) {
@@ -98,8 +95,9 @@ class OWCalendarCalendarView: UIView {
                 weakSelf.collectionView.days = days
                 weakSelf.collectionView.reloadData()
                 
-                weakSelf.collectionBackViewHeight.update(offset: (days.count / 7).ga_CGFloat * kOWCalendarCellHeight)
-                weakSelf.collectionView.layoutIfNeeded()
+                let offset = (days.count / 7).ga_CGFloat * kOWCalendarCellHeight
+                weakSelf.collectionView.frame = CGRect(x: 0, y: 0, width: AppWidth, height: offset)
+                weakSelf.tableView.tableHeaderView = weakSelf.collectionView
             }
         })
     }
@@ -112,7 +110,7 @@ class OWCalendarCalendarView: UIView {
 extension OWCalendarCalendarView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kOWCanlenderTableViewCell) as! OWCanlenderTableViewCell
-        cell.textLabel?.text = "--==--"
+        cell.textLabel?.text = indexPath.row.ga_str
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -121,16 +119,14 @@ extension OWCalendarCalendarView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let v = UILabel(frame: CGRect(x: 0, y: 0, width: AppWidth, height: 20))
-        if let m = month {
-            v.text = m.year.ga_str + m.month.ga_str
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y = scrollView.ga.offSetY
+        if y > collectionView.ga_h {
+            calendarView.isHiddenCollectionView(false)
+        } else {
+            calendarView.isHiddenCollectionView(true)
         }
-        v.backgroundColor = UIColor.orange
-        return v
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
     }
 }
 
