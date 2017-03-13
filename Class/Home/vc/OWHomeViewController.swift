@@ -9,14 +9,17 @@
 import UIKit
 import SnapKit
 
-class OWHomeViewController: OWBaseViewController {
+class OWHomeModel {
+    var weather: OWTodayWeather?
+    var airQuality: OWAirQuality?
+    var futures: [OWFutureWeather] = []
+}
 
-    lazy var calendarView: OWHomeCalendarView = {
-        let c = OWHomeCalendarView(frame: CGRect.zero)
-        c.myDelegate = self 
-        self.view.addSubview(c)
-        return c
-    }()
+class OWHomeViewController: OWBaseViewController {
+    
+    @IBOutlet weak var dressLabel: UILabel!
+    
+    var homeModel: OWHomeModel = OWHomeModel()
     
     lazy var tableView: UITableView = {
         let t = UITableView()
@@ -26,49 +29,128 @@ class OWHomeViewController: OWBaseViewController {
         t.separatorStyle = .none
         t.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         t.showsVerticalScrollIndicator = false
-        t.backgroundColor = UIColor.white
+        t.backgroundColor = UIColor.clear
         t.showsHorizontalScrollIndicator = false
         t.delegate = self
         t.dataSource = self
         t.isPagingEnabled = true
-
+        
         self.view.addSubview(t)
         return t
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = "f0f0f0".color0X
+        
+        automaticallyAdjustsScrollViewInsets = false
         
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
         
-        calendarView.snp.makeConstraints { (make) in
-            make.top.equalTo(20)
-            make.left.right.equalTo(0)
-            make.height.equalTo(64)
-        }
-
+        GALocationManager.l.startUpdating()
+        
+        requestData()
     }
-
+    
+    @IBAction func tapDressLabel(_ sender: UITapGestureRecognizer) {
+        print("选择地点")
+    }
 }
+
+// MARK: 数据请求
+extension OWHomeViewController {
+    func requestData() {
+        requestWeatherData()
+        requestConstellationData()
+    }
+    
+    func requestConstellationData() {
+        let p = ["consName":"白羊座", "key":theme.RequestConstellationKey, "type" : "today"]
+        OWRequestWeather.share.requestConstellation(url: API.constellation, parameters: p, hadler: {
+            [weak self] d, b, m in
+            if let weakSelf = self {
+                if b {
+
+                }
+            }
+        })
+    }
+    
+    func requestWeatherData() {
+        
+        let queue = DispatchQueue.global(qos: .default)
+        let group = DispatchGroup()
+        
+        group.enter()
+        queue.async(group: group, execute: {
+            self.requestWeather(over: {
+                group.leave()
+            })
+        })
+        
+        group.enter()
+        queue.async(group: group, execute: {
+            self.requestAirQuality(over: {
+                group.leave()
+            })
+        })
+        
+        group.notify(queue: queue, execute: {
+            DispatchQueue.main.async {
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .left)
+            }
+        })
+    }
+    
+    func requestWeather(over: @escaping () -> ()) {
+        let p = ["cityname":"北京", "key":theme.RequestWeatherKey]
+        OWRequestWeather.share.requestWeather(url: API.weather, parameters: p, hadler: {
+            [weak self] d, b, m in
+            if let weakSelf = self {
+                if b {
+                    weakSelf.homeModel.weather = d?.result.today
+                    weakSelf.homeModel.futures = (d?.result.futures)!
+                }
+                over()
+            }
+        })
+    }
+    
+    func requestAirQuality(over: @escaping () -> ()) {
+        let p = ["city":"北京", "key":theme.RequestAirQualityKey]
+        OWRequestWeather.share.requestAirQualyity(url: API.airQuality, parameters: p, handler: {
+            [weak self] d, b, m in
+            if let weakSelf = self {
+                if b {
+                   weakSelf.homeModel.airQuality = d
+                }
+                over()
+            }
+        })
+    }
+}
+
 
 extension OWHomeViewController: OWPublicTouchDelegate {
     func touchAction() {
         let vc = OWCanlendarViewController()
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
 }
 
+// MARK: UITableViewDelegate, UITableViewDataSource
 extension OWHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: kOWConstellationTableViewCell) as! OWConstellationTableViewCell
-                        cell.backgroundColor = UIColor.orange
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: kOWHomeCell) as! OWHomeCell
+            if let _ =  homeModel.weather {
+                cell.homeModel = homeModel
+            }
             return cell
         }
     }

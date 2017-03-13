@@ -1,15 +1,15 @@
 //
-//  OWHomeCell.swift
+//  OWCanlenderTableViewCell.swift
 //  OnlyWeather
 //
-//  Created by houjianan on 2017/3/8.
+//  Created by houjianan on 2017/3/9.
 //  Copyright © 2017年 houjianan. All rights reserved.
 //
 
 import UIKit
 
-public let kOWHomeCell: String = "OWHomeCell"
-class OWHomeCell: UITableViewCell {
+public let kOWCanlenderTableViewCell = "OWCanlenderTableViewCell"
+class OWCanlenderTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
