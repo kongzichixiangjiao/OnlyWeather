@@ -8,11 +8,29 @@
 
 import UIKit
 import SnapKit
-
+/*
+lazy var calendarView: OWHomeCalendarView = {
+    let c = OWHomeCalendarView(frame: CGRect.zero)
+    c.myDelegate = self
+    self.view.addSubview(c)
+    return c
+}()
+ calendarView.snp.makeConstraints { (make) in
+    make.top.equalTo(20)
+    make.left.right.equalTo(0)
+    make.height.equalTo(kOWHomeCalendarViewHeihgt)
+ }
+*/
+public let kOWHomeCalendarViewHeihgt: CGFloat = 64
 class OWHomeCalendarView: UIView {
     
     var page: Int = 0
     var days: [Int : [DayModel]] = [0 : []]
+    var weather: OWBaseWeather? {
+        didSet {
+            
+        }
+    }
     
     weak var myDelegate: OWPublicTouchDelegate?
     var collectionViewTop: Constraint!
@@ -54,7 +72,7 @@ class OWHomeCalendarView: UIView {
                 page += 1
             }
             
-                loadDays(tag: page)
+            loadDays(tag: page)
         }
     }
     

@@ -18,7 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UITabBar.appearance().tintColor = UIColor.red 
         
+        registerKey()
+        
         return true
+    }
+    func registerKey() {
+        AMapServices.shared().apiKey = theme.AMapKey
     }
     // MARK: - Core Data stack
 }

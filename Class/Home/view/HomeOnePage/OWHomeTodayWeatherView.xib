@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OWHomeTodayWeatherView" customModule="OnlyWeather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="140"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="晴" translatesAutoresizingMaskIntoConstraints="NO" id="7US-E6-7LH">
+                    <rect key="frame" x="121" y="30" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="7US-E6-7LH" secondAttribute="height" id="RH8-dC-zgq"/>
+                        <constraint firstAttribute="height" constant="60" id="lVh-VV-MyK"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="风" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcB-jN-V9T">
+                    <rect key="frame" x="41" y="95" width="11" height="12"/>
+                    <color key="backgroundColor" red="0.21285076530612246" green="0.79509460034013602" blue="0.31606079931972791" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="0.1176470588" green="0.15765493699047622" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--年--月--日 星期--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfJ-xH-E4m">
+                    <rect key="frame" x="47" y="10" width="110" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="穿衣建议" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqb-Gu-S3m">
+                    <rect key="frame" x="10" y="112" width="315" height="15"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                    <color key="textColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBK-9L-8O6">
+                    <rect key="frame" x="10" y="30" width="101" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="50"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="冷热" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BT-Wa-FjE">
+                    <rect key="frame" x="62" y="95" width="21" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="紫外线强度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FpG-lz-36z">
+                    <rect key="frame" x="93" y="95" width="52" height="12"/>
+                    <color key="backgroundColor" red="0.42834008601088436" green="0.13751250501768711" blue="0.72560586734693877" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天气" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqb-sf-esH">
+                    <rect key="frame" x="10" y="95" width="21" height="12"/>
+                    <color key="backgroundColor" red="0.01563281560272109" green="0.59903461386122447" blue="0.72560586734693877" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bT6-Dz-Bea">
+                    <rect key="frame" x="10" y="10" width="37" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="良" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="AjW-Hp-9qQ">
+                    <rect key="frame" x="191" y="34" width="50.5" height="53"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="a06-2N-yPo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="空气质量：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aN-dT-1XW">
+                    <rect key="frame" x="191" y="95" width="52" height="12"/>
+                    <color key="backgroundColor" red="0.63331332531836737" green="0.73216098942517005" blue="0.9911658413149661" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="kfJ-xH-E4m" firstAttribute="leading" secondItem="bT6-Dz-Bea" secondAttribute="trailing" id="16W-S9-ZCc"/>
+                <constraint firstItem="7US-E6-7LH" firstAttribute="leading" secondItem="HBK-9L-8O6" secondAttribute="trailing" constant="10" id="2rc-8M-eX9"/>
+                <constraint firstItem="Mqb-sf-esH" firstAttribute="top" secondItem="HBK-9L-8O6" secondAttribute="bottom" constant="5" id="7bt-6P-Jbt"/>
+                <constraint firstItem="nqb-Gu-S3m" firstAttribute="top" secondItem="fcB-jN-V9T" secondAttribute="bottom" constant="5" id="HgF-sA-7aP"/>
+                <constraint firstAttribute="trailing" secondItem="nqb-Gu-S3m" secondAttribute="trailing" constant="10" id="Hq0-p0-sso"/>
+                <constraint firstItem="bT6-Dz-Bea" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Ie2-9r-fhB"/>
+                <constraint firstItem="1BT-Wa-FjE" firstAttribute="centerY" secondItem="fcB-jN-V9T" secondAttribute="centerY" id="IvR-on-3Ax"/>
+                <constraint firstItem="FpG-lz-36z" firstAttribute="centerY" secondItem="1BT-Wa-FjE" secondAttribute="centerY" id="LUi-Bb-K0m"/>
+                <constraint firstItem="HBK-9L-8O6" firstAttribute="top" secondItem="kfJ-xH-E4m" secondAttribute="bottom" constant="5" id="QoL-k7-0w8"/>
+                <constraint firstItem="AjW-Hp-9qQ" firstAttribute="centerY" secondItem="7US-E6-7LH" secondAttribute="centerY" id="UVB-V1-vCQ"/>
+                <constraint firstItem="2aN-dT-1XW" firstAttribute="centerY" secondItem="FpG-lz-36z" secondAttribute="centerY" id="WJi-K1-JIM"/>
+                <constraint firstItem="FpG-lz-36z" firstAttribute="leading" secondItem="1BT-Wa-FjE" secondAttribute="trailing" constant="10" id="XBT-SL-Y5t"/>
+                <constraint firstItem="kfJ-xH-E4m" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="cKm-iQ-Pkb"/>
+                <constraint firstItem="nqb-Gu-S3m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="crr-rZ-nUT"/>
+                <constraint firstItem="2aN-dT-1XW" firstAttribute="leading" secondItem="AjW-Hp-9qQ" secondAttribute="leading" id="iRP-vW-ZOa"/>
+                <constraint firstItem="Mqb-sf-esH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="ifV-VL-nRy"/>
+                <constraint firstItem="fcB-jN-V9T" firstAttribute="top" secondItem="HBK-9L-8O6" secondAttribute="bottom" constant="5" id="oav-bb-RjQ"/>
+                <constraint firstItem="AjW-Hp-9qQ" firstAttribute="leading" secondItem="7US-E6-7LH" secondAttribute="trailing" constant="10" id="utB-A1-hEa"/>
+                <constraint firstItem="7US-E6-7LH" firstAttribute="top" secondItem="HBK-9L-8O6" secondAttribute="top" id="vyq-Cb-RLy"/>
+                <constraint firstItem="bT6-Dz-Bea" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="xaU-lc-a3z"/>
+                <constraint firstItem="HBK-9L-8O6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="y9s-eI-4YT"/>
+                <constraint firstItem="1BT-Wa-FjE" firstAttribute="leading" secondItem="fcB-jN-V9T" secondAttribute="trailing" constant="10" id="z2N-Cb-0jW"/>
+                <constraint firstItem="fcB-jN-V9T" firstAttribute="leading" secondItem="Mqb-sf-esH" secondAttribute="trailing" constant="10" id="zu4-Pa-ZBh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="airQualityLabel" destination="AjW-Hp-9qQ" id="vOc-3q-WFV"/>
+                <outlet property="airQuality_indexLabel" destination="2aN-dT-1XW" id="SeB-zi-NMd"/>
+                <outlet property="dateLabel" destination="kfJ-xH-E4m" id="9s1-Dv-Ah0"/>
+                <outlet property="dressing_adviceLabel" destination="nqb-Gu-S3m" id="Zqs-Pc-DGK"/>
+                <outlet property="dressing_indexLabel" destination="1BT-Wa-FjE" id="Gif-wp-V0x"/>
+                <outlet property="temperatureLabel" destination="HBK-9L-8O6" id="jfe-Yd-199"/>
+                <outlet property="uv_indexLabel" destination="FpG-lz-36z" id="QZl-i0-ztw"/>
+                <outlet property="weatherImageView" destination="7US-E6-7LH" id="z7e-yt-GdM"/>
+                <outlet property="weatherLabel" destination="Mqb-sf-esH" id="4hW-Zv-Um2"/>
+                <outlet property="windLabel" destination="fcB-jN-V9T" id="cg9-2O-2Yy"/>
+            </connections>
+            <point key="canvasLocation" x="-12.5" y="-150"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="晴" width="128" height="128"/>
+    </resources>
+</document>

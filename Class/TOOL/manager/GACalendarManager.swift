@@ -131,6 +131,7 @@ class MonthModel {
     
     convenience init(date: Date) {
         self.init()
+        print(date, date.day)
         self.allDays = date.allDaysOfMonth()
         self.weekDayOfWeek = date.weekDayOfWeekOfEachMonth()
         self.year = date.year
